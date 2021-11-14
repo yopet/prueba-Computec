@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit{
    * Este método no se puede modificar
    * */
   public redirect(): void {
-    this.router.navigateByUrl('/navbar');
+    this.router.navigateByUrl('/navbar/users/list');
   }
 
   get getControl(){

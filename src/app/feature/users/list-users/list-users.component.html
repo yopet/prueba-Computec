@@ -1,0 +1,53 @@
+<div class="example-container">
+    <mat-table #table [dataSource]="datos" [class.isMobile]="true" class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Nombre">
+            <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <span class="mobile-label">Nombre:</span> {{element.first_name}}
+            </mat-cell>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Correo">
+            <mat-header-cell *matHeaderCellDef>Correo </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <span class="mobile-label">Correo:</span> {{element.email}}
+            </mat-cell>
+        </ng-container>
+
+
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Imagen">
+            <mat-header-cell *matHeaderCellDef> Imagen </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <span class="mobile-label">Imagen:</span>
+                <img src={{element.avatar}} style="width: 50px;">
+            </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Accion">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <span class="mobile-label">Accion:</span>
+                <div class="example-button-row">
+                    <button color="warn" mat-raised-button (click)="deleteUser(element)">
+                <mat-icon>delete</mat-icon>
+                <span fxShow="true" fxHide.lt-sm="true">Eliminar</span></button>
+                    <button color="primary" mat-raised-button (click)="redirectToEditUsers(element)">
+                    <mat-icon>edit</mat-icon>
+                    <span fxShow="true" fxHide.lt-sm="true">Editar</span></button>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [length]="datos?.length">
+    </mat-paginator>
+</div>
